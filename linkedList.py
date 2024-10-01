@@ -18,7 +18,11 @@ class LinkedList:
             self.head = Node(data)
         self.size += 1
         
-    #def insert(self, index, data):
+    #insere um elemento no inicio da lista
+    def newhead(self, data):
+        node = Node(data)
+        node.next = self.head
+        self.head = node
         
     
     #retorna os elementos da lista e tamanho da lista
@@ -31,12 +35,7 @@ class LinkedList:
     
     #retornar o elemento de determinado indicie
     def get(self, index):
-        pointer = self.head
-        for i in range(index):
-            if pointer != None:
-                pointer = pointer.next
-            else:
-                raise IndexError("list index out of range")
+        pointer = self._getNode(index)
         if pointer != None:
             return pointer.data
         else:
@@ -44,17 +43,34 @@ class LinkedList:
     
     #coloca um valor na lista
     def set(self, index, data):
-        pointer = self.head
-        for i in range(index):
-            if pointer != None:
-                pointer = pointer.next
-            else:
-                raise IndexError("list index out of range")
+        pointer = self._getNode(index)
         if pointer != None:
             pointer.data = data
         else:
             raise IndexError("List index out of range")
         
+    #remove um elemento da lista
+    def remove(self, data):
+        if self.head is None:
+            raise ValueError(f"{data} is not in list")
+    
+        if self.head.data == data:
+            self.head = self.head.next
+            self.size -= 1
+            return True
+    
+        ancestor = self.head
+        pointer = self.head.next
+    
+        while pointer is not None:
+            if pointer.data == data:
+                ancestor.next = pointer.next
+                self.size -= 1
+                return True
+            ancestor = pointer
+            pointer = pointer.next
+        raise ValueError(f"{data} is not in list")
+    
     #retornar o indicie de determinado elemento
     def index(self, data):
         pointer = self.head
@@ -67,4 +83,19 @@ class LinkedList:
                 i += 1
         raise ValueError("{data} is not in list")
     
-    
+    #retorna o Nó
+    def _getNode(self, index):
+        pointer = self.head
+        for i in range(index):
+            if pointer != None:
+                pointer = pointer.next
+            else:
+                raise IndexError("list index out of range")
+        return pointer
+
+if __name__ == '__main__':
+    lista = LinkedList()
+    lista.append(10)
+    lista.append(20)
+    lista.append(30)
+    lista.append(40)
