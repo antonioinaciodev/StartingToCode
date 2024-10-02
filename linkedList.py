@@ -99,3 +99,4 @@ if __name__ == '__main__':
     lista.append(20)
     lista.append(30)
     lista.append(40)
+    lista.append(50)
