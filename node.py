@@ -3,3 +3,8 @@ class Node:
         self.data = data
         self.next = None
           
+    def getValor(self):
+        return self.data
+    
+    def setValor(self, data):
+        self.data = data
