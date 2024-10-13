@@ -1,4 +1,4 @@
-from node import *
+from Node import *
 
 class LinkedList:
     # inicia o objeto lista
@@ -127,3 +127,4 @@ if __name__ == '__main__':
     lista.append("Maria")
     lista.append("maria")
     print(lista)
+    
