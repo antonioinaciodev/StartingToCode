@@ -1,0 +1,5 @@
+name = input('What is your name?')
+day = input('What day were you born?')
+month = input('and the month?')
+year = input('the year?')
+print(f'So, your name is {name} and you born in {day} of {month} in {year}, right?')

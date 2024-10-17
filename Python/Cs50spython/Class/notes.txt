@@ -1,0 +1,137 @@
+Functions:
+    print:
+        print("args") -> display something on display
+        one way to format string is f'string'
+            print(f"your text {variable}")
+    input:
+        input("agrs") -> get some information
+
+Comments:
+    use "#" to comment in your code or """ """ to comment a chunk of code
+    the comments can be used for guide you, like a pseudocode
+
+        example:
+        #Ask user for their name
+            name = input("What's your name?")
+        #Say something to user
+            print(f"Hello, {name}")
+        """
+        everything here is a comment
+        """
+
+String Methods:
+    f'string{variable}' -> format a string inserting variables in {}
+        Methods:
+            .strip(): Remove espaços em branco (ou caracteres especificados) do início e do fim da string.
+            .lstrip(): Remove espaços em branco (ou caracteres especificados) do início da string.
+            .rstrip(): Remove espaços em branco (ou caracteres especificados) do final da string.
+            .lower(): Converte todos os caracteres da string para minúsculas.
+            .upper(): Converte todos os caracteres da string para maiúsculas.
+            .capitalize(): Converte a primeira letra da string para maiúscula.
+            .title(): Converte a primeira letra de cada palavra para maiúscula.
+            .swapcase(): Inverte maiúsculas e minúsculas na string.
+            .replace(old, new): Substitui todas as ocorrências de old por new na string.
+            .count(sub): Conta quantas vezes sub aparece na string.
+            .find(sub): Retorna o índice da primeira ocorrência de sub ou -1 se não for encontrado.
+            .rfind(sub): Retorna o índice da última ocorrência de sub ou -1 se não for encontrado.
+            .startswith(prefix): Verifica se a string começa com prefix.
+            .endswith(suffix): Verifica se a string termina com suffix.
+            .split(separator): Divide a string em uma lista usando separator como delimitador.
+            .join(iterable): Junta os itens de um iterável em uma string, usando a string como separador.
+            .isalpha(): Retorna True se a string contiver apenas letras.
+            .isdigit(): Retorna True se a string contiver apenas dígitos.
+            .isalnum(): Retorna True se a string contiver apenas letras e números.
+            .isspace(): Retorna True se a string contiver apenas espaços em branco.
+            .zfill(width): Preenche a string com zeros à esquerda até atingir o comprimento especificado.
+            .center(width): Centraliza a string em um campo de largura width.
+            .ljust(width): Alinha a string à esquerda em um campo de largura width.
+            .rjust(width): Alinha a string à direita em um campo de largura width.
+
+Primitive Types:
+    str : string
+    int : integer
+    float : floating
+    bool : boolean
+
+Mathematical Operators:
+    + -> sum
+    - -> subtract
+    / -> divide
+    // -> true divide
+    % -> rest of divide
+    * -> multiply
+    ** -> exponent
+
+Relational Operators:
+    > -> Greater Than
+    >= -> Greater or Equal
+    < -> Less Than
+    <= -> Less or Equal
+    == -> Equal
+    != -> Different
+    or
+    and
+
+Defining Functions:
+    def -> used to define a Functions
+        def *function*(parameters):
+            your code
+            return(parameters)
+
+Conditionals:
+    if (condition):
+        *consequence*
+    else:
+        *consequence*
+
+    if (condition):
+        *consequence*
+    elif: (condition):
+        *consequence*
+
+Match:
+    match *variable*:
+        case *option*:
+            *consequence*
+        case *option2*
+            *consequence*
+        case _:
+            *consequence*
+
+Loops:
+    while *condition* -> loop something when the condition isn't according
+        *consequence*
+
+    for *variable* in *range()*
+
+    continue -> restart a loop
+    break -> force finish a loop
+
+Lists and Dict:
+    List -> *variable* = [item1, item2, item3]
+    Dict -> *variable* = {*key*: *value*, *key2*: *value2*}
+    List of Dicts ->
+    *variable* = [
+        {*key*: *value*, *key2*: *value2*}
+        {*key*: *value*, *key2*: *value2*}
+    ]
+
+    printing list:
+        for item in list:
+            print(item)
+
+    printing dict:
+        for item in dict:
+            print(dict[item])
+
+    printing a dict's list:
+        for item in list:
+            print(item["key1"], item["key2"])
+
+Exceptions:
+    try:
+        
+    except ValueError:
+        pass
+
+    raise

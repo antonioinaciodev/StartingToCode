@@ -1,0 +1,312 @@
+Linguagem C Fundamentos
+		-Bibliotecas
+			#import <stdio.h> biblioteca base
+			#import <math.h> biblioteca de matemática
+			#import <string.h> biblioteca de string
+		-Módulo principal do código
+			int main(){}
+		-Sintaxe
+			; - para finalizar um comando
+			\n - para quebrar linha
+			return - retornar um função
+		-Funções
+			printf("Exemplo") imprimir na tela
+			scanf("%c") guardar um dado
+		-Tipos Primitivos
+			%c - char (caracteres)
+			%s - string (cadeia de caractéres)
+			%i,d - int (números inteiros)
+			%f - float (números decimais)
+			%lf - double (números decimais com maior precisão)
+		-Operadores Aritméticos
+			+ - - soma/subtração
+			* - multiplicação
+			** - potência
+			/ - divisão
+			% - resto da divisão
+			x++ - somar 1
+			x-- - subtrair 1
+		-Comentários
+			//exemplo
+			/*
+			exemplo
+			*/
+		-Formatação no Printf
+			caracteres especiais:
+			\n - quebra de linha
+			\t - tabulação
+			\\ - barra invertida
+			%% - porcentagem
+			alihamento:
+			%xf - x espaços a direita
+			%-xf - x espaços a esquerda
+			%0xf - x espaços completados com 0 a direita
+			%0-xf - x espaços completados com 0 a esquerda
+			precisão:
+			%.xf - x casas decimais
+		-Operadores Relacionais
+			<= - menor igual
+			>= - maior igual
+			== - igual
+			< - menor que
+			> - maior que
+		-Operadores Lógicos
+			&& - e
+			|| - ou
+			precedencia= && -> ||
+Laços de Repetição
+	break e continue:
+	break: termina um laço de repetição
+	continue: continua um laço de repetição
+
+	estruturas de condição if else:
+	if(condição){consequencia}
+		else{consequencia}
+
+	estruturas de repetição while:
+	while(condição){consequência}
+
+	estruturas de repetição for:
+	for(inicialização;condição;incremento)consequência
+
+	estruturas de repetição(dowhile):
+	do{consequência}
+	while(condição)
+
+	estruturas de alternação(switch)
+	switch(condicional)
+		case 1:
+		printf(exemplo);
+		break;
+		case 2:
+		printf(exemplo);
+		break;
+		default
+		printf(exemplo);
+Funcitions E Array
+	modularização: fragmentar o código em funções
+		estrutura da função
+		'tipo' 'nome' (parâmetro) {código} (x, y)
+
+	ponteiro: variável de uma posição de memória
+		'tipo' *'nome'
+		*ultilizar um ponteiro em um parâmetro significa passagem por referência
+
+	recursividade: uma função chama a si mesma até atingir o caso base
+		int fatorial(int n) {
+    		if (n == 0) {  // Caso base
+     	   return 1;
+    		} else {
+      	  return n * fatorial(n - 1);  // Caso recursivo
+    		}
+		}
+
+	vetores (conjunto de elementos)
+		'tipo' 'nome'[quantidade de elementos]
+		int vetor[TAM]
+
+	matrizes (conjunto de vetores)
+		'tipo' 'nome'[quantidade de elementos][quantidade de vetores]
+		int matriz[quantidade de elementos][quantidade de vetores]
+Strings
+	Caracteres:
+		cada caractere tem um valor inteiro na tabela ASCII
+		sizeof(x) para verificar seu valor em bytes
+		para a variável receber um caractere, o mesmo deve estar entre aspas simples: char c = 'abc'
+
+	strings:
+		são ultilizadas para armazenar uma cadeia de caractéres (em um vetor)
+		operações de strings com atribuição requerem funções específicas
+
+	funções da biblioteca string.h:
+		strlen
+		strcpy
+		strcmp
+		strcap
+		strstr
+Alocação dinâmica
+	biblioteca: import <stdlib.h>
+	funções: malloc (alocação), free (desalocação)
+
+	malloc: void* malloc(size_t size);
+		recebe um valor em bytes.
+		aloca uma região de memória, retorna a primeira posição de memória.
+		para solicitar diretamente a quantidade de espaços para determinado tipo, pode-se usar sizeof.
+		ponteiro = (int*)malloc(sizeof(int)*5); //aloca espaço para 5 inteiros.
+
+	free: void free(void *ptr);
+			recebe um espaço alocado.
+		desaloca uma região de memória alocada dinâmicamente
+
+	calloc: void* calloc (size_t num, size_t size);
+		recebe uma quantidade de espaços e o valor em bytes dos espaços.
+		aloca uma região de memória, retorna a primeira posição de memória.
+		a função calloc irá solicitar memória para um número específico de itens de um certo tamanho em bytes, preencherá todo o bloco com o valor 0.
+
+	realloc: void *realloc(void *ptr, size_t size)
+		recebe um espaço alocado.
+		realoca uma região de memória já alocada (altera o tamanho da região alocada).
+
+	alocação dinâmica de matrizes:
+		Para alocar um vetor de vetores, isto é, um vetor de ponteiros, precisamos utilizar um ponteiro que aponte para ponteiros.
+		**p (ponteiro que aponta para um ponteiro de 'p').
+		basta atribuir a quantidade de vetores, e através de um laço de repetição atribuir a o espaço de cada vetor:
+			int **p = (int**)malloc(N * sizeof(int*));
+			for(int i=0;i<N;i++){
+				p[i] = (int*)malloc(M * sizeof(int));
+			}
+		n = linhas
+		m = colunas
+
+	principais erros:
+		Utilizar ponteiros sem alocar
+		Não verificar a alocação
+		Não desalocar a memória alocada
+		Utilizar ponteiros após desalocação
+		Esquecer o '\0' ao alocar strings
+Manipulação de Arquivos:
+	para abrir um arquivo, temos que atribuir a posição de memória do arquivo para um ponteiro de arquivo.
+	ponteiros para arquivos são do tipo FILE.
+	FILE *arq
+
+	fopen: abre um arquivo de vários modos.
+		recebe dois parâmetros:
+			caminho para o arquivo
+			modo de abertura
+		retorna um ponteiro para o arquivo aberto.
+		modos de abertura:
+			"r" Leitura
+			"w" Escrita
+			"a" Anexar
+			ex: FILE a* = fopen("arquivo.txt", "r");
+
+	fclose fecha um arquivo.
+		recebe o parâmetro com a váriavel do arquivo.
+		fecha o arquivo.
+
+	fputc coloca um caractere no arquivo.
+		recebe dois parâmetros
+			o caractere inserido no arquivo.
+			a posição do arquivo que recebe o caractere
+		retorna o valor inteiro do caractere escrito.
+
+	fputs coloca uma string no arquivo.
+		recebe dois parâmetros
+			a string inserida no arquivo.
+			a posição do arquivo.
+		retorna um valor não negativo, caso obtenha exito.
+
+	fprintf coloca uma string formatada no arquivo.
+		recebe dois parâmetros
+			um ponteiro para o arquivo
+			uma string de formatação
+		retorna um valor igual a quantidade de caracteres escritos.
+Leitura de Arquivos
+	existem funções especificas que recebem com parâmetro de qual o fluxo que a informação deve ser lida.
+
+	fgetc lê o caractere na posição indicada do ponteiro
+		recebe o parâmetro do ponteiro do arquivo.
+		retorna o valor inteiro do caractere lido.
+
+	fgets lê uma linha e incrementa no ponteiro a quantidade máxima fornecida.
+		recebe três parâmetros
+			um ponteiro para char.
+			um tamanho máximo (evita estourar o buffer).
+			um ponteiro para o arquivo.
+		retorna o endereço do ponteiro fornecido
+
+	fscanf lê uma string com formatação de arquivo.
+		recebe 3 parâmetros
+			ponteiro do arquivo
+			tipos de dados lidos
+			variáveis incrementadas
+		retorna um valor igual a quantidade de valores lidos.
+
+	feof ultilizada para saber se existe algo dentro do arquivo.
+		recebe o parâmetro do ponteiro do arquivo.
+		retorna 0 se houver algo.
+		retorna um valor não nulo se não houver.
+Programação Orientada Ao Objeto
+	Paradigmas de programação:
+		São modelos a serem seguidos durante a construção de um programa, modelos cujo
+		funcionamento já foi extensivamente verificado.
+
+	Programação Imperativa:
+		Modela o programa por uma sequência de comandos que o computador deve executar.
+		Geralmente é o primeiro paradigma a ser ensinado.
+		Exemplo: Linguagem C.
+
+	Programação Orientada a Objetos:
+		Modela o programa baseado na interação entre objetos.
+		Exemplo: Linguagens Java, C++ e Python.
+
+	Objeto: é uma entidade e normalmente é referenciado como sendo uma instância de uma Classe. (Thiago, Antonio, etc...)
+	Classe: contém a descrição das características existentes em seus Objetos. (idade, altura, sexo, etc...)
+
+	Atributos (variáveis): são características individuais de cada objeto. "classe humano" = peso, nome, altura, sexo...
+	Métodos (funções): são ações que os objetos da classe podem realizar. "classe humano" = falar, dormir, andar, comer...
+
+	Pilares da Orientação ao Objeto:
+		Abstração
+		Como primeiro pilar, a abstração ignifica que o programador deve implementar apenas o que for útil à aplicação.
+
+		Encapsulamento
+		Como segundo pilar, o encapsulamento significa "colocar em uma capsula", ou seja, esconder informações.
+
+		Herança
+		Como terceiro pilar, a herança permite que classes herdem informações de outras classes. torna o código mais intuito e evita repetições.
+
+		Polimorfismo
+		Como quarto e último pilar, o polimorfismo significa "várias formas". uma mesma ação pode ser executada de várias formas a depender do usuário e da situação em questão.
+Structs em C
+	Estrutura homogêneas
+		Vetores são estruturas homogêneas, pois, só armazenam dados de um mesmo tipo.
+	Estrutura Heterogêneas
+		Structs são definidas pelo próprio programador que podem armazenar um conjunto de informações de tipos diversos.
+
+	STRUCT
+		Declaração de uma Struct em C:
+			struct aluno{
+   				char nome[50]
+    			int idade;
+			};
+
+			int main() {
+    		struct aluno x;
+			}
+
+		Acessando Informações:
+			struct aluno {
+    			char nome[50];
+   		 		int idade;
+			};
+
+			int main() {
+    			struct aluno x = {"Fulano", 20}; (a inicialização deve estar na mesma ordem da struct)
+    			printf("Nome: %s\n", x.nome);
+    			printf("Nome: %d\n", x.idade);
+			}
+	
+	TYPEDEF
+		É possível que o programador atribua sinônimos aos tipos de dados utilizando o comando typedef.
+		typedef <nome> <sinônimo>;
+		
+		Atribuição diretamente na Struct:
+			typedef struct aluno{
+				char nome[50];
+				int idade;
+			}aluno; //'aluno' será o sinônimo de 'struct aluno'
+
+	PONTEIROS EM STRUCT
+		Para acessar uma variável apartir de uma posicação de memória ultiliza-se
+			nomedavariável -> variável = valorrecebido
+
+			typedef struct num{
+				int x;
+			}tNum;
+
+			int main(){
+			tNum numero;
+			(&numero)->x = 10
+			}
+	
